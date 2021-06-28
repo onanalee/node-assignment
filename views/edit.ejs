@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.4.0/socket.io.js"></script>
+
+    <title>Document</title>
+
+
+    <script>
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const contentId = urlParams.get("contentId");
+        $.ajax({
+            type: "GET",
+            // url: `/api/posts${contentId ? "contentId=" + contentId : ""}`,
+            url: `/api/posts/${contentId}`,
+            data: {},
+            success: function (response) {
+                console.log("GET API successful");
+                let contentId = response['posts']['contentId'];
+                let title = response['posts']['title'];
+                let name = response['posts']['name'];
+                let content = response['posts']['content'];
+
+                $('#title').val(title);
+                $('#name').val(name);
+                $('#content').val(content);
+            }
+        })
+
+
+        function editContent() {
+            let contentId = new Date().getTime();
+            let title = $('#title').val();
+            let name = $('#name').val();
+            let password = $('#pw').val();
+            let content = $('#content').val();
+            console.log(contentId, title, name, content);
+
+            $.ajax({
+                type: "POST",
+                url: `/api/edit`,
+                data: {
+                    contentId: contentId,
+                    title: title,
+                    name: name,
+                    password:password,
+                    content: content
+                },
+                success: function (response) {
+                    console.log("POST API successful");
+                }
+            })
+            window.location.href = '/allEntries';
+        }
+    </script>
+</head>
+
+<body>
+
+    <div>
+        Hellooooo
+    </div>
+    <div>
+        <div>
+            제목: <input id="title" type="text">
+        </div>
+        <div>
+            작성자명: <input id="name" type="text">
+        </div>
+        <div>
+            비밀번호: <input id="pw" type="password">
+        </div>
+        <div>
+            내용: <textarea id="content" type="text"></textarea>
+        </div>
+        <div>
+            <button onclick="editContent()">수정하기</button>
+            <button onclick="submitContent()">삭제하기</button>
+        </div>
+    </div>
+</body>
+
+</html>
