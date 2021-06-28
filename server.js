@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 5000
+const port = 3000;
 
 // 몽고db 붕어빵 틀
 const connect = require('./schemas/index')
@@ -30,18 +30,6 @@ app.get('/', (req, res) => {
     res.render('index.ejs');
 })
 
-app.get('/write', (req, res) => {
-    res.render('write');
-})
-
-app.get('/read', (req, res) => {
-    res.render('read');
-})
-
-app.get('/list', (req, res) => {
-    res.render('list');
-})
-
 app.get('/edit', (req, res) => {
     res.render('edit');
 })
@@ -51,7 +39,6 @@ app.get('/allEntries', (req, res) => {
 app.get('/viewEntry', (req, res) => {
     res.render('viewEntry');
 })
-
 
 app.listen(port, () => {
     console.log(`listening at http://localhost:${port}`)

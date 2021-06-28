@@ -14,10 +14,7 @@
 
 
     <script>
-        function view(contentId) {
-
-            window.location.href = `/viewEntry/?contentId=${contentId}`;
-        }
+        
         const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
         $.ajax({
             type: "GET",
@@ -49,8 +46,6 @@
                                     </tr>`
 
                     $('#searchResult').append(template)
-
-                    // <div class="card mb-2" onclick="location.href='/detail?goodsId=${item["goodsId"]}'">
                 }
             }
         })

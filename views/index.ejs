@@ -14,24 +14,6 @@
 
 
     <script>
-        function get_goods(category) {
-            $("#goodsList").empty()
-            console.log(category)
-            $.ajax({
-                type: "GET",
-                url: `/api/goods${category ? "?category=" + category : ""}`,
-                data: {},
-                success: function (response) {
-                    let goods = response["goods"]
-                    for (let i = 0; i < goods.length; i++) {
-                        make_card(goods[i])
-                    }
-                }
-            })
-        }
-
-
-
         function submitContent() {
             let contentId = new Date().getTime();
             let title = $('#title').val();
@@ -56,26 +38,6 @@
             })
             window.location.href = '/allEntries';
         }
-        // function addCart() {
-        //     $.ajax({
-        //         type: "POST",
-        //         url: `/api/goods/${goodsId}/cart`,
-        //         data: {
-        //             quantity: sessionStorage.getItem("orderNum")
-        //         },
-        //         error: function (xhr, status, error) {
-        //             if (status == 400) {
-        //                 alert("존재하지 않는 상품입니다.");
-        //             }
-        //             window.location.href = "/goods";
-        //         },
-        //         success: function (response) {
-        //             if (response["result"] == "success") {
-        //                 $("#cartModal").modal("show");
-        //             }
-        //         }
-        //     });
-        // }
     </script>
 </head>
 

@@ -19,7 +19,6 @@
         const contentId = urlParams.get("contentId");
         $.ajax({
             type: "GET",
-            // url: `/api/posts${contentId ? "contentId=" + contentId : ""}`,
             url: `/api/posts/${contentId}`,
             data: {},
             success: function (response) {
