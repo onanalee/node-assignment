@@ -38,14 +38,8 @@ router.post("/posts", async (req, res) => {
 
 router.post("/edit", async (req, res) => {
   const { contentId, title, name, password, content } = req.body;
-  console.log('password', req.body.password);
-  // if(req.body.password === Posts.findOne({ password })){
-  //   await Posts.update({ contentId, title, name, password, content });
-  //   res.send({ result: "success" });
-  // } else {
-  //   console.log('wrong password!');
-  // }
-  
+  await Posts.updateOne({ 'contentId': contentId, 'password':password }, { $set: { 'title': title, 'name': name, 'content': content } });
+  res.send({ result: "success" });
 });
 
 

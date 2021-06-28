@@ -37,12 +37,12 @@
 
 
         function editContent() {
-            let contentId = new Date().getTime();
+            // let contentId = new Date().getTime();
             let title = $('#title').val();
             let name = $('#name').val();
             let password = $('#pw').val();
             let content = $('#content').val();
-            console.log(contentId, title, name, content);
+            console.log(title, name, content);
 
             $.ajax({
                 type: "POST",
