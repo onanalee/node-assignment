@@ -34,10 +34,23 @@
                 $('#content').val(content);
             }
         })
-
+        function deleteContent() {
+            let password = $('#pw').val();
+            $.ajax({
+                type: "POST",
+                url: `/api/delete`,
+                data: {
+                    contentId: contentId,
+                    password: password,
+                },
+                success: function (response) {
+                    console.log("POST API successful");
+                }
+            })
+            window.location.href = '/allEntries';
+        }
 
         function editContent() {
-            // let contentId = new Date().getTime();
             let title = $('#title').val();
             let name = $('#name').val();
             let password = $('#pw').val();
@@ -51,7 +64,7 @@
                     contentId: contentId,
                     title: title,
                     name: name,
-                    password:password,
+                    password: password,
                     content: content
                 },
                 success: function (response) {
@@ -83,7 +96,7 @@
         </div>
         <div>
             <button onclick="editContent()">수정하기</button>
-            <button onclick="submitContent()">삭제하기</button>
+            <button onclick="deleteContent()">삭제하기</button>
         </div>
     </div>
 </body>

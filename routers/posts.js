@@ -42,5 +42,11 @@ router.post("/edit", async (req, res) => {
   res.send({ result: "success" });
 });
 
+router.post("/delete", async (req, res) => {
+  const { contentId, password } = req.body;
+  await Posts.deleteOne({ 'contentId': contentId, 'password':password });
+  res.send({ result: "success" });
+});
+
 
 module.exports = router;
